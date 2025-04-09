@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Conteúdos exclusivos</title>
+    <title>Conteúdo exclusivos</title>
     <style>
       body {
         background: #0e0e0e;
@@ -251,18 +251,57 @@
     font-family: 'Poppins', sans-serif;
   }
 
+    /* Importando a fonte Montserrat */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+  /* Estilo geral para os benefícios */
   .beneficio {
     display: flex;
     align-items: center;
+    font-family: 'Montserrat', sans-serif; /* Usando a fonte Montserrat */
     font-size: 18px;
+    color: #fff; /* Texto branco */
     margin-bottom: 12px;
     opacity: 0;
-    animation: aparecer 0.5s ease forwards;
+    animation: aparecer 0.5s ease forwards, neonGlow 1.5s ease-in-out infinite alternate; /* Animação de aparecimento e neon */
   }
 
+  /* Animação de aparecimento */
+  @keyframes aparecer {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Efeito Neon vermelho */
+  @keyframes neonGlow {
+    0% {
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    }
+    50% {
+      text-shadow: 0 0 5px #ff5733, 0 0 10px #ff5733, 0 0 15px #ff5733, 0 0 20px #ff5733;
+    }
+    100% {
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    }
+  }
+
+  /* Animações para cada item de benefício com delay */
   .beneficio:nth-of-type(1) { animation-delay: 0.1s; }
   .beneficio:nth-of-type(2) { animation-delay: 0.3s; }
   .beneficio:nth-of-type(3) { animation-delay: 0.5s; }
+
+  /* Estilo do ícone de check */
+  .check {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #fff; /* Ícone de check em branco */
+  }
 
   .check {
     color: red;
@@ -412,7 +451,7 @@
 <!-- Inclui a fonte Montserrat do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
-<h1 class="frase-destaque">OS MELHORES CONTEÚDO  – SOMENTE AQUI!</h1>
+<h1 class="frase-destaque">OS MELHORES CONTEÚDO   SOMENTE AQUI!</h1>
 
 <!-- Fonte bonita do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -434,7 +473,7 @@
 </div>
 <div class="copy-instruction">
   <p class="instruction-text">Copie e coloque no seu navegador</p>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1024px-Google_2015_logo.svg.png" alt="Ícone do Google" class="google-icon">
+  
 </div>
 
 
