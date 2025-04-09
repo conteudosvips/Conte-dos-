@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Conteúdo Proibido</title>
+    <title>Conteúdos exclusivos</title>
     <style>
       body {
         background: #0e0e0e;
@@ -32,7 +32,7 @@
       }
       
       .warning {
-        color: #ff6666;
+        color: #2E7D32;
         font-weight: bold;
       }
     </style>
@@ -247,7 +247,163 @@
       box-shadow: 0 0 10px rgba(0, 150, 136, 0.3);
     }
   }
-</style>
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .beneficio {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: aparecer 0.5s ease forwards;
+  }
+
+  .beneficio:nth-of-type(1) { animation-delay: 0.1s; }
+  .beneficio:nth-of-type(2) { animation-delay: 0.3s; }
+  .beneficio:nth-of-type(3) { animation-delay: 0.5s; }
+
+  .check {
+    color: red;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    animation: neon 1.2s ease-in-out infinite alternate;
+    text-shadow:
+      0 0 5px red,
+      0 0 10px red,
+      0 0 15px red,
+      0 0 20px red;
+  }
+
+  @keyframes aparecer {
+    from {
+      transform: translateX(-15px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes neon {
+    from {
+      text-shadow:
+        0 0 5px red,
+        0 0 10px red,
+        0 0 15px red,
+        0 0 20px red;
+    }
+    to {
+      text-shadow:
+        0 0 2px #ff4d4d,
+        0 0 6px #ff4d4d,
+        0 0 10px #ff4d4d,
+        0 0 14px #ff4d4d;
+    }
+  }
+.pix-neon-box {
+  background-color: #111;
+  border: 2px solid #ff0000;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 400px;
+  margin: 30px auto;
+  text-align: center;
+  box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
+  animation: pulseNeon 2s infinite;
+  color: #fff;
+}
+
+.pix-neon-box h2 {
+  color: #ff0000;
+  font-size: 24px;
+  text-shadow: 0 0 10px #ff0000;
+  margin-bottom: 15px;
+}
+
+.pix-neon-box p {
+  font-size: 18px;
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+  margin-bottom: 20px;
+}
+
+.pix-neon-box button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+  transition: 0.3s;
+}
+
+.pix-neon-box button:hover {
+  background-color: #cc0000;
+  box-shadow: 0 0 25px #ff0000;
+}
+
+@keyframes pulseNeon {
+  0%, 100% {
+    box-shadow: 0 0 10px #ff0000, inset 0 0 5px #ff0000;
+  }
+  50% {
+    box-shadow: 0 0 20px #ff3333, inset 0 0 15px #ff3333;
+  }
+}
+.copy-instruction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  animation: textAnimation 3s infinite;
+}
+
+.instruction-text {
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px #fff;
+}
+
+.google-icon {
+  width: 25px;
+  height: 25px;
+  animation: iconAnimation 3s infinite;
+}
+
+@keyframes textAnimation {
+  0%, 100% {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff5555;
+  }
+  50% {
+    color: #ff5555;
+    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff5555;
+  }
+}
+
+@keyframes iconAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
 
 </style>
 
@@ -258,17 +414,29 @@
 
 <h1 class="frase-destaque">OS MELHORES CONTEÚDO  – SOMENTE AQUI!</h1>
 
+<!-- Fonte bonita do Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+<div class="beneficio"><span class="check">✔</span> Os melhores conteúdos da internet</div>
+<div class="beneficio"><span class="check">✔</span> Conteúdos únicos e exclusivos</div>
+<div class="beneficio"><span class="check">✔</span> Atualizações frequentes com novidades incríveis</div>
     <div class="blurred-img"></div>
     <p style="font-family: 'Montserrat', sans-serif; font-size: 18px;">
   Vídeos amadores + packs completos das melhores novinha da net!
 </p>
     <!-- Coloque isso onde quiser exibir o preço -->
 <p class="preco-pulsando">R$ 9,99</p>
-<div class="pix-container">
-  <div class="qrcode-container">
-  <iframe src="https://widget.livepix.gg/embed/55ed1490-0852-4f3b-ae12-bb37bdf0a827" allowfullscreen></iframe>
+
+<div class="pix-neon-box">
+  <h2>Chave Pix Segura</h2>
+  <p id="pixKey">https://livepix.gg/conteudosvips</p>
+  <button onclick="copyPixKey()">Colar Pix</button>
 </div>
+<div class="copy-instruction">
+  <p class="instruction-text">Copie e coloque no seu navegador</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1024px-Google_2015_logo.svg.png" alt="Ícone do Google" class="google-icon">
+</div>
+
 
 </div>
 
@@ -284,7 +452,7 @@
 4797564469
 </p>
 
-    <p class="warning">Sem reembolso. Conteúdo enviado automaticamente em até 10 minutos.</p>
+    <p class="warning">Seu pagamento está 100% seguro conosco garantido por tecnologia de ponta e criptografia avançada.</p>
     <script>
   function copiarPix() {
     const chave = document.getElementById("chavePix").textContent;
@@ -292,6 +460,17 @@
       alert("Chave PIX copiada!");
     });
   }
+
+  function copyPixKey() {
+    const key = document.getElementById("pixKey").innerText;
+    navigator.clipboard.writeText(key).then(() => {
+      alert("Chave Pix colada com sucesso!");
+    }).catch(() => {
+      alert("Erro ao copiar a chave Pix.");
+    });
+  }
+
+
 </script>
 
   </body>
