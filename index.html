@@ -442,7 +442,76 @@
     transform: scale(1.2);
   }
 }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
+  .liberar-btn {
+    background-color: #ff0000;
+    border: none;
+    padding: 12px 28px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 0 10px #ff0000;
+  }
+
+  .liberar-btn:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+  }
+
+  .mensagem-desconto {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .mensagem-desconto.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .parabens-texto {
+    font-size: 22px;
+    color: #ff4d4d;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 0 10px #ff4d4d;
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+  }
+
+  .preco-texto {
+    font-size: 34px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    margin-top: 10px;
+    animation: aparecerZoom 1s ease forwards;
+    text-shadow: 0 0 8px #ff0000;
+  }
+
+  @keyframes neonPulse {
+    from {
+      text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d;
+    }
+    to {
+      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+    }
+  }
+
+  @keyframes aparecerZoom {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
 </style>
 
@@ -457,14 +526,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <div class="beneficio"><span class="check">✔</span> Os melhores conteúdos da internet</div>
-<div class="beneficio"><span class="check">✔</span> Conteúdos únicos e exclusivos</div>
-<div class="beneficio"><span class="check">✔</span> Atualizações frequentes com novidades incríveis</div>
+<div class="beneficio"><span class="check">✔</span> Vídeos sem censura</div>
+<div class="beneficio"><span class="check">✔</span> Fotos exclusivas não publicadas</div>
     <div class="blurred-img"></div>
     <p style="font-family: 'Montserrat', sans-serif; font-size: 18px;">
   Vídeos amadores + packs completos das melhores novinha da net!
 </p>
     <!-- Coloque isso onde quiser exibir o preço -->
-<p class="preco-pulsando">R$ 9,99</p>
+<!-- Botão -->
+<button id="liberarBtn" class="liberar-btn">Liberar conteúdo</button>
+
+<!-- Mensagem escondida -->
+<div id="mensagem" class="mensagem-desconto">
+  <p class="parabens-texto">Parabéns, você ganhou uma Promoção válida até acabar o limite de envios!</p>
+  <p class="preco-texto">R$ 9,90</p>
+</div>
 
 <div class="pix-neon-box">
   <h2>Chave Pix Segura</h2>
@@ -508,7 +584,10 @@
       alert("Erro ao copiar a chave Pix.");
     });
   }
-
+document.getElementById("liberarBtn").addEventListener("click", function () {
+    const msg = document.getElementById("mensagem");
+    msg.classList.add("show");
+  });
 
 </script>
 
