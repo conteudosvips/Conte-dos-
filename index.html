@@ -564,18 +564,20 @@
 </p>
     <!-- Coloque isso onde quiser exibir o preço -->
 <!-- Botão -->
-<button id="liberarBtn" class="liberar-btn">Liberar conteúdo</button>
+<button id="liberarBtn" class="liberar-btn" onclick="mostrarConteudo()">LIBERAR CONTEÚDO</button>
+
 
 <!-- Mensagem escondida -->
-<div id="mensagem" class="mensagem-desconto">
+<div id="mensagem" class="mensagem-desconto" style="display: none;">
   <p class="parabens-texto">Parabéns, você ganhou um desconto de 30%</p>
   <p class="preco-texto">R$ 9,90<br> Somente Hoje</p>
 </div>
 
+
 <div class="pix-neon-box">
   <h2>Chave Pix Segura</h2>
   <p id="pixKey">https://livepix.gg/conteudosvips</p>
-  <button onclick="copyPixKey()">Colar Pix</button>
+  <button onclick="copyPixKey()">Copiar Pix</button>
 </div>
 <div class="copy-instruction">
   <p class="instruction-text">Copie e coloque no seu navegador</p>
@@ -618,6 +620,79 @@ document.getElementById("liberarBtn").addEventListener("click", function () {
     const msg = document.getElementById("mensagem");
     msg.classList.add("show");
   });
+
+  function mostrarConteudo() {
+    const mensagem = document.getElementById("mensagem");
+    const botao = document.getElementById("liberarBtn");
+
+    mensagem.style.display = "block";
+    botao.style.display = "none";
+
+    mensagem.scrollIntoView({ behavior: "smooth" });
+
+    dispararFogos();
+  }
+
+  function dispararFogos() {
+    const canvas = document.createElement("canvas");
+    canvas.id = "canvasFogos";
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = "9999";
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: Math.random() * 3 + 1,
+        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+        speedX: Math.random() * 10 - 5,
+        speedY: Math.random() * 10 - 5,
+        alpha: 1
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, i) => {
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.alpha -= 0.02;
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+        }
+      });
+
+      if (particles.length > 0) {
+        requestAnimationFrame(animate);
+      } else {
+        canvas.remove();
+      }
+    }
+
+    animate();
+  }
+
 
 </script>
 
