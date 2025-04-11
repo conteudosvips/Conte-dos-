@@ -547,6 +547,11 @@
 
   </head>
   <body>
+<audio id="audioWelcome" autoplay style="display: none;">
+  <source src="1_5073500650352936669.ogg" type="audio/ogg">
+  Seu navegador não suporta áudio.
+</audio>
+
 <!-- Inclui a fonte Montserrat do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
@@ -598,6 +603,102 @@
   </svg>
 4797564469
 </p>
+<!-- Faixa de depoimento animada -->
+<div class="carrossel-depoimento">
+  <div class="depoimento" id="depoimentoAtivo">
+    <img id="fotoPerfil" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto de perfil">
+    <p id="textoDepoimento">"Nunca vi algo assim. Isso sim é conteúdo de verdade."</p>
+  </div>
+</div>
+
+<!-- Estilo ajustado -->
+<style>
+.carrossel-depoimento {
+  width: 100%;
+  max-width: 450px;
+  height: 50px;
+  background-color: #330000;
+  color: #ffcccc;
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.3);
+  margin: auto;
+  overflow: hidden;
+}
+
+.carrossel-depoimento img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.depoimento {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeInOut 4s infinite;
+  width: 100%;
+}
+
+.depoimento p {
+  font-size: 11.5px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-20px); }
+  10% { opacity: 1; transform: translateX(0); }
+  60% { opacity: 1; }
+  90% { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 0; }
+}
+</style>
+
+<!-- Script com vários depoimentos -->
+<script>
+const depoimentos = [
+  {
+    texto: '"Nunca vi algo assim. Isso sim é conteúdo de verdade."',
+    foto: 'https://randomuser.me/api/portraits/men/32.jpg'
+  },
+  {
+    texto: '"Sério, me surpreendeu demais."',
+    foto: 'https://randomuser.me/api/portraits/men/12.jpg'
+  },
+  {
+    texto: '"Melhor conteúdo que já encontrei na internet."',
+    foto: 'https://randomuser.me/api/portraits/men/85.jpg'
+  },
+  {
+    texto: '"Tô viciado. Vale cada centavo!"',
+    foto: 'https://randomuser.me/api/portraits/men/63.jpg'
+  },
+  {
+    texto: '"Nunca pensei que seria tão bom assim."',
+    foto: 'https://randomuser.me/api/portraits/men/44.jpg'
+  },
+  {
+    texto: '"Isso sim é diversão de verdade."',
+    foto: 'https://randomuser.me/api/portraits/men/18.jpg'
+  },
+  {
+    texto: '"Top demais, recomendo de olhos fechados."',
+    foto: 'https://randomuser.me/api/portraits/men/29.jpg'
+  }
+];
+
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % depoimentos.length;
+  document.getElementById("textoDepoimento").textContent = depoimentos[index].texto;
+  document.getElementById("fotoPerfil").src = depoimentos[index].foto;
+}, 4000);
+</script>
 
     <p class="warning">Seu pagamento está 100% seguro conosco garantido por tecnologia de ponta e criptografia avançada.</p>
     <script>
@@ -692,6 +793,15 @@ document.getElementById("liberarBtn").addEventListener("click", function () {
 
     animate();
   }
+
+
+// Força o autoplay mesmo com restrições
+  window.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('audioWelcome');
+    audio.play().catch(() => {
+      document.addEventListener('click', () => audio.play(), { once: true });
+    });
+  });
 
 
 </script>
