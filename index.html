@@ -728,141 +728,62 @@
 
   <p id="copyMessage" class="copy-message">Chave copiada com sucesso!</p>
 </div>
+<form class="form-entrega" onsubmit="event.preventDefault(); mostrarMensagemFinal();">
+  <label for="metodoEntrega">Por onde você quer receber o conteúdo?</label>
+  <select id="metodoEntrega" name="Método de Entrega" onchange="mostrarCampoEntrega()">
+    <option value="">Selecione</option>
+    <option value="WhatsApp">WhatsApp</option>
+    <option value="Instagram">Instagram</option>
+    <option value="Email">E-mail</option>
+  </select>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Entrega</title>
-    <style>
-        /* Estilo do formulário e animações */
-        .form-entrega {
-            background: #111;
-            border: 1px solid #ff0000;
-            padding: 20px;
-            border-radius: 12px;
-            max-width: 320px;
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            margin: 20px auto;
-            box-shadow: 0 0 10px #ff000066;
-            animation: fadeIn 1s ease-in-out;
-        }
+  <div id="campoWhatsapp" class="campo hidden">
+    <label>Seu número de WhatsApp:</label>
+    <input type="text" name="WhatsApp" placeholder="(99) 99999-9999">
+  </div>
 
-        .form-entrega label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            display: block;
-        }
+  <div id="campoInstagram" class="campo hidden">
+    <label>Seu @ do Instagram:</label>
+    <input type="text" name="Instagram" placeholder="@seuusuario">
+  </div>
 
-        .form-entrega select, .form-entrega input {
-            width: 100%;
-            padding: 10px;
-            background: #1a1a1a;
-            color: #fff;
-            border: 1px solid #ff0000;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            transition: border 0.3s ease;
-        }
+  <div id="campoEmail" class="campo hidden">
+    <label>Seu e-mail:</label>
+    <input type="email" name="Email" placeholder="exemplo@email.com">
+  </div>
 
-        .form-entrega input:focus, .form-entrega select:focus {
-            outline: none;
-            border-color: #ff3333;
-        }
+  <button type="submit" class="botao-enviar">ENVIAR</button>
+</form>
 
-        .botao-enviar {
-            background: #ff0000;
-            color: #fff;
-            padding: 12px;
-            width: 100%;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .botao-enviar:hover {
-            background: #cc0000;
-            transform: scale(1.03);
-        }
-
-        .campo {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-
-<body>
-    <form class="form-entrega" action="https://formsubmit.co/2024.fernandacampos@gmail.com" method="POST">
-        <label for="metodoEntrega">Por onde você quer receber o conteúdo?</label>
-        <select id="metodoEntrega" name="Método de Entrega" onchange="mostrarCampoEntrega()">
-            <option value="">Selecione</option>
-            <option value="WhatsApp">WhatsApp</option>
-            <option value="Instagram">Instagram</option>
-            <option value="Email">E-mail</option>
-        </select>
-
-        <div id="campoWhatsapp" class="campo hidden">
-            <label>Seu número de WhatsApp:</label>
-            <input type="text" name="WhatsApp" placeholder="(99) 99999-9999">
-        </div>
-
-        <div id="campoInstagram" class="campo hidden">
-            <label>Seu @ do Instagram:</label>
-            <input type="text" name="Instagram" placeholder="@seuusuario">
-        </div>
-
-        <div id="campoEmail" class="campo hidden">
-            <label>Seu e-mail:</label>
-            <input type="email" name="Email" placeholder="exemplo@email.com">
-        </div>
-
-        <button type="submit" class="botao-enviar">Enviar</button>
-
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://conteudosvips.github.io/Pagamento-/">
-    </form>
-
-    <script>
-        function mostrarCampoEntrega() {
-            const metodo = document.getElementById('metodoEntrega').value;
-            document.querySelectorAll('.campo').forEach(c => c.classList.add('hidden'));
-
-            if (metodo === 'WhatsApp') {
-                document.getElementById('campoWhatsapp').classList.remove('hidden');
-            } else if (metodo === 'Instagram') {
-                document.getElementById('campoInstagram').classList.remove('hidden');
-            } else if (metodo === 'Email') {
-                document.getElementById('campoEmail').classList.remove('hidden');
-            }
-        }
-    </script>
-</body>
-</html>
-
+<!-- MENSAGEM FINAL -->
+<div id="mensagemFinal" class="mensagem-final hidden">
+  <div class="mensagem-texto">
+    <span class="emoji-fogo">🔥</span>
+    <span class="emoji-fogo">🔥</span>
+    <span class="neon-texto"><h2 class="pix-neon-text">
+  Pague agora no Pix e receba o conteúdo na hora!
+</h2></span>
+    <span class="emoji-fogo">🔥</span>
+    <span class="emoji-fogo">🔥</span>
+  </div>
+  <div class="emoji-subindo">🚀</div>
+</div>
 
 <style>
-  .form-entrega {
+  body {
     background: #111;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .form-entrega {
+    background: #1a1a1a;
     border: 1px solid #ff0000;
     padding: 20px;
     border-radius: 12px;
-    max-width: 320px;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    margin: 20px auto;
+    max-width: 360px;
+    margin: 30px auto;
     box-shadow: 0 0 10px #ff000066;
-    animation: fadeIn 1s ease-in-out;
   }
 
   .form-entrega label {
@@ -871,24 +792,19 @@
     display: block;
   }
 
-  .form-entrega select, .form-entrega input {
+  .form-entrega select,
+  .form-entrega input {
     width: 100%;
     padding: 10px;
-    background: #1a1a1a;
+    background: #222;
     color: #fff;
     border: 1px solid #ff0000;
     border-radius: 8px;
     margin-bottom: 15px;
-    transition: border 0.3s ease;
-  }
-
-  .form-entrega input:focus, .form-entrega select:focus {
-    outline: none;
-    border-color: #ff3333;
   }
 
   .botao-enviar {
-    background: #ff0000;
+    background: linear-gradient(90deg, #ff1a1a, #cc0000);
     color: #fff;
     padding: 12px;
     width: 100%;
@@ -896,12 +812,12 @@
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: 0.3s;
   }
 
   .botao-enviar:hover {
-    background: #cc0000;
-    transform: scale(1.03);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ff0000aa;
   }
 
   .campo {
@@ -912,9 +828,49 @@
     display: none;
   }
 
+  /* MENSAGEM FINAL */
+  .mensagem-final {
+    text-align: center;
+    padding: 40px 10px;
+    animation: fadeIn 1.2s ease-in-out;
+    color: #fff;
+  }
+
+  .neon-texto {
+    font-size: 20px;
+    color: #ff1a1a;
+    text-shadow: 0 0 5px #ff1a1a, 0 0 10px #ff1a1a, 0 0 20px #ff1a1a, 0 0 40px #ff0000;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 1.6;
+  }
+
+  .emoji-fogo {
+    animation: fogoBrilho 1.5s infinite;
+    font-size: 24px;
+    margin: 0 3px;
+  }
+
+  @keyframes fogoBrilho {
+    0%, 100% { filter: drop-shadow(0 0 5px orange); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 12px red); transform: scale(1.2); }
+  }
+
+  .emoji-subindo {
+    font-size: 38px;
+    animation: subirRocket 2s ease-in-out forwards;
+    margin-top: 25px;
+  }
+
+  @keyframes subirRocket {
+    0% { transform: translateY(0); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
+  }
+
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 </style>
 
@@ -931,11 +887,12 @@
       document.getElementById('campoEmail').classList.remove('hidden');
     }
   }
+
+  function mostrarMensagemFinal() {
+    document.getElementById("mensagemFinal").classList.remove("hidden");
+  }
 </script>
 
-    <h2 class="pix-neon-text">
-  Pague agora no Pix e receba o conteúdo na hora!
-</h2>
     <p class="pix-info-text">
   Envie o comprovante para: 
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
