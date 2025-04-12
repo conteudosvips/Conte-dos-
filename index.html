@@ -390,7 +390,7 @@
 
 .pix-neon-box button:hover {
   background-color: #cc0000;
-  box-shadow: 0 0 25px #ff0000;
+  box-shadow: 0 0 20px #ff0000;
 }
 
 @keyframes pulseNeon {
@@ -542,7 +542,107 @@
   display: inline-block;
   max-width: 100%;
 }
+.instrucoes {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 5px #ff0000;
+}
+  .pix-neon-box {
+    text-align: center;
+    background: #111;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ff000088;
+    margin: 30px auto;
+    max-width: 400px;
+  }
 
+  .neon-title {
+    color: #ff0000;
+    text-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .instrucoes {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 4px #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+
+  .neon-text {
+    background: #222;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-shadow: 0 0 10px #ff0000aa;
+    font-size: 16px;
+  }
+
+  .neon-button {
+    background: #ff0000;
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff0000cc;
+    transition: all 0.3s ease;
+  }
+
+  .neon-button:hover {
+    background: #ff3333;
+    box-shadow: 0 0 25px #ff0000;
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 10px #ff0000;
+    }
+    50% {
+      box-shadow: 0 0 20px #ff0000aa, 0 0 30px #ff000055;
+    }
+    100% {
+      box-shadow: 0 0 10px #ff0000;
+    }
+  }
+
+  .copy-message {
+    margin-top: 15px;
+    color: #00ff00;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .copy-message.show {
+    opacity: 1;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 </style>
 
   </head>
@@ -555,14 +655,16 @@
 <!-- Inclui a fonte Montserrat do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
-<h1 class="frase-destaque">OS MELHORES CONTEÚDO   SOMENTE AQUI!</h1>
+<h1 class="frase-destaque">Conteúdos Exclusivos e de Qualidade</h1>
 
 <!-- Fonte bonita do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <div class="beneficio"><span class="check">✔</span> Os melhores conteúdos da internet</div>
-<div class="beneficio"><span class="check">✔</span> Vídeos sem censura</div>
-<div class="beneficio"><span class="check">✔</span> Fotos exclusivas não publicadas</div>
+<div class="beneficio"><span class="check">✔</span>As melhores Novinhas da net</div>
+<div class="beneficio"><span class="check">✔</span> Videos chamadas+18, Packs de fotos e videos Exclusivos</div>
+<p style="font-size: 30px;">😈</p>
+
     <div class="blurred-img"></div>
     <p style="font-family: 'Montserrat', sans-serif; font-size: 18px;">
   Vídeos amadores + packs completos das melhores novinha da net!
@@ -580,16 +682,20 @@
 
 
 <div class="pix-neon-box">
-  <h2>Chave Pix Segura</h2>
-  <p id="pixKey">https://livepix.gg/conteudosvips</p>
-  <button onclick="copyPixKey()">Copiar Pix</button>
-</div>
-<div class="copy-instruction">
-  <p class="instruction-text">Copie e coloque no seu navegador</p>
-  
-</div>
+  <h2 class="neon-title">Chave Pix Segura</h2>
 
+  <div class="instrucoes">
+    <span class="icon">💡</span>
+    Copie a chave Pix abaixo e cole no seu app bancário para liberar o conteúdo.
+  </div>
 
+  <p id="pixKey" class="neon-text">https://livepix.gg/conteudosvips</p>
+
+  <button onclick="copyPixKey()" id="copyBtn" class="neon-button pulse">
+    Copiar Pix
+  </button>
+
+  <p id="copyMessage" class="copy-message">Chave copiada com sucesso!</p>
 </div>
 
     <h2 class="pix-neon-text">
@@ -802,7 +908,22 @@ document.getElementById("liberarBtn").addEventListener("click", function () {
       document.addEventListener('click', () => audio.play(), { once: true });
     });
   });
+function copyPixKey() {
+    const chave = document.getElementById("pixKey").innerText;
+    const msg = document.getElementById("copyMessage");
+    const btn = document.getElementById("copyBtn");
 
+    navigator.clipboard.writeText(chave).then(() => {
+      msg.classList.add("show");
+      btn.innerText = "Copiado!";
+      setTimeout(() => {
+        msg.classList.remove("show");
+        btn.innerText = "Copiar Pix";
+      }, 2000);
+    }).catch(err => {
+      alert("Erro ao copiar: " + err);
+    });
+  }
 
 </script>
 
